@@ -1,4 +1,5 @@
 using Microsoft.OpenApi;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,8 @@ builder.Services.AddAuthentication()
     .AddJwtBearer(options =>
     {
         options.Authority = "https://localhost:5001";
-        options.TokenValidationParameters.ValidateAudience = false;
-        options.Audience = "api-weather";
+        options.TokenValidationParameters.ValidateAudience = true;
+        options.TokenValidationParameters.ValidAudiences = new List<string> { "api-weather" };
     });
 
 builder.Services.AddAuthorization();
@@ -37,7 +38,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

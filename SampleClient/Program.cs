@@ -19,7 +19,7 @@ var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCr
     Address = disco.TokenEndpoint,
     ClientId = "XCJHDJHGDSYGYW",
     ClientSecret = "Pass@word123",
-    Scope = "api-weather"
+    Scope = "api-weather",
 });
 
 if (tokenResponse.IsError)

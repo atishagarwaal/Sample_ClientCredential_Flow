@@ -48,6 +48,7 @@ internal static class HostingExtensions
 
         _ = builder.Services.AddIdentityServer()
             .AddInMemoryIdentityResources(Config.IdentityResources)
+            .AddInMemoryApiResources(Config.ApiResources) // Audience and other API resource information
             .AddInMemoryApiScopes(Config.ApiScopes)
             .AddInMemoryClients(Config.Clients)
             .AddLicenseSummary();

@@ -10,6 +10,16 @@ public static class Config
             new IdentityResources.OpenId()
         };
 
+    public static IEnumerable<ApiResource> ApiResources =>
+        new[]
+        {
+            new ApiResource("api-weather", "Weather API")
+            {
+                Scopes = { "api-weather" } // Audience for the API resource
+            }
+        };
+
+
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
             {
@@ -27,7 +37,12 @@ public static class Config
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
-                    AllowedScopes = { "api-weather" }
+                    AllowedScopes = { "api-weather" },
+
+                    Claims = new List<ClientClaim>
+                    {
+                        new ClientClaim("audience", "api-weather")
+                    }
                 }
             };
 }
