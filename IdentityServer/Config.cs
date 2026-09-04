@@ -38,11 +38,6 @@ public static class Config
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
                     AllowedScopes = { "api-weather" },
-
-                    Claims = new List<ClientClaim>
-                    {
-                        new ClientClaim("audience", "api-weather")
-                    }
                 }
             };
 }
