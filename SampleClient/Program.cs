@@ -17,9 +17,9 @@ if (disco.IsError)
 var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
 {
     Address = disco.TokenEndpoint,
-    ClientId = "XCJHDJHGDSYGYW",
+    ClientId = "weather-client-app",
     ClientSecret = "Pass@word123",
-    Scope = "api-weather",
+    Scope = "weather.read",
 });
 
 if (tokenResponse.IsError)

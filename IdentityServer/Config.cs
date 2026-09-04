@@ -10,20 +10,23 @@ public static class Config
             new IdentityResources.OpenId()
         };
 
+    // Define the physical API
     public static IEnumerable<ApiResource> ApiResources =>
         new[]
         {
             new ApiResource("api-weather", "Weather API")
             {
-                Scopes = { "api-weather" } // Audience for the API resource
+                Scopes = { "weather.read" }
             }
         };
 
 
+    // Define the permissions
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
             {
-                new ApiScope("api-weather", "Weather API")
+                new ApiScope("weather.read", "Read Weather Data"),
+                new ApiScope("weather.write", "Modify Weather Data")
             };
 
     public static IEnumerable<Client> Clients =>
@@ -31,13 +34,13 @@ public static class Config
             {
                 new Client
                 {
-                    ClientId = "XCJHDJHGDSYGYW",
+                    ClientId = "weather-client-app",
 
                     ClientSecrets = { new Secret("Pass@word123".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
-                    AllowedScopes = { "api-weather" },
+                    AllowedScopes = { "weather.read" },
                 }
             };
 }
