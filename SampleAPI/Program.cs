@@ -11,9 +11,10 @@ builder.Services.AddAuthentication()
         // The URL of your Duende IdentityServer
         options.Authority = "https://localhost:5001";
 
-        // Enable validation of the token's audience (resource scope)
+        // Enable validation of the token's audience
         options.TokenValidationParameters.ValidateAudience = true;
-        // Must match the ApiResource name(the 'resource' name in the token)
+        // IdentityServer resolves the audience from scope mappings internally
+        // So, the client need not send the audience claim in the token
         options.TokenValidationParameters.ValidAudiences = new List<string> { "api-weather" };
     });
 
