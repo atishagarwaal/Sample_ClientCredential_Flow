@@ -10,18 +10,19 @@ public static class Config
             new IdentityResources.OpenId()
         };
 
-    // Define the physical API
+    // Defines the physical API
     public static IEnumerable<ApiResource> ApiResources =>
         new[]
         {
             new ApiResource("api-weather", "Weather API")
             {
+                // Add permissions (scopes) to the API resource
                 Scopes = { "weather.read" }
             }
         };
 
 
-    // Define the permissions
+    // Defines the permissions (scopes) that can be requested by clients
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
             {
@@ -40,6 +41,7 @@ public static class Config
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
+                    // Set the pemissions (scopes)
                     AllowedScopes = { "weather.read" },
                 }
             };

@@ -11,14 +11,15 @@ builder.Services.AddAuthentication()
         // The URL of your Duende IdentityServer
         options.Authority = "https://localhost:5001";
 
-        // Must match the ApiResource name(the 'aud' claim in the token)
+        // Enable validation of the token's audience (resource scope)
         options.TokenValidationParameters.ValidateAudience = true;
+        // Must match the ApiResource name(the 'resource' name in the token)
         options.TokenValidationParameters.ValidAudiences = new List<string> { "api-weather" };
     });
 
 builder.Services.AddAuthorization(options =>
 {
-    // Creates a policy named "WeatherReadPolicy" that requires the "api-weather" scope
+    // Creates a policy named "WeatherReadPolicy" that requires the client to have "weather.read" permission scope
     options.AddPolicy("WeatherReadPolicy", policy =>
         policy.RequireClaim("scope", "weather.read"));
 });
